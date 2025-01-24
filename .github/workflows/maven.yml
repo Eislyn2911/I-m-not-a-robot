@@ -1,0 +1,48 @@
+name: Maven Build and Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    name: Build and deploy to DockerHub
+    runs-on: ubuntu-latest  # Use a Linux-based runner with Maven
+    env:
+      DISCORD_JDA_KEY: ${{ secrets.DISCORD_JDA_KEY }}
+      GOOGLE_SCRIPT_TRANSLATOR_DEPLOYMENT_ID: ${{ secrets.GOOGLE_SCRIPT_TRANSLATOR_DEPLOYMENT_ID }}
+      CURRENCY_TRANSLATOR_API_KEY: ${{ secrets.CURRENCY_TRANSLATOR_API_KEY }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'corretto'
+          java-version: 21
+
+      - name: Build the application
+        run: mvn -B clean package --file pom.xml
+
+      - name: Build Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          dockerfile: Dockerfile
+          push: false
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/chronos-auth:latest
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/chronos-auth:latest
