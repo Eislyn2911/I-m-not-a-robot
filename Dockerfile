@@ -19,6 +19,7 @@ RUN mvn dependency:resolve
 # Copy the source code to the working directory
 COPY src src
 
+# Copy .env to app/.env
 COPY .env .env
 
 # Build the project
