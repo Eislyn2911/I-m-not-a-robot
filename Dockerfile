@@ -19,10 +19,6 @@ RUN mvn dependency:resolve
 # Copy the source code to the working directory
 COPY src src
 
-ENV DISCORD_JDA_KEY=${DISCORD_JDA_KEY}
-ENV GOOGLE_SCRIPT_TRANSLATOR_DEPLOYMENT_ID=${GOOGLE_SCRIPT_TRANSLATOR_DEPLOYMENT_ID}
-ENV CURRENCY_TRANSLATOR_API_KEY=${CURRENCY_TRANSLATOR_API_KEY}
-
 # Build the project
 RUN mvn clean package
 
