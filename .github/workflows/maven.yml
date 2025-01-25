@@ -8,8 +8,8 @@ on:
 jobs:
   build-deploy:
     name: Build and deploy to DockerHub
-    runs-on: ubuntu-latest  # Use a Linux-based runner with Maven
-    env:
+    runs-on: ubuntu-latest
+    environment:
       DISCORD_JDA_KEY: ${{ secrets.DISCORD_JDA_KEY }}
       GOOGLE_SCRIPT_TRANSLATOR_DEPLOYMENT_ID: ${{ secrets.GOOGLE_SCRIPT_TRANSLATOR_DEPLOYMENT_ID }}
       CURRENCY_TRANSLATOR_API_KEY: ${{ secrets.CURRENCY_TRANSLATOR_API_KEY }}
