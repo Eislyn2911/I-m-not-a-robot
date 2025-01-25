@@ -22,7 +22,7 @@ public class HelpEmbedTest {
 		expectedEmbedBuilder.setTitle("Help Menu");
 		expectedEmbedBuilder.setDescription("-------------------------------------------------------------------------------------\r\n"
 				+ "Description\r\n"
-				+ "I'm not a robot is a multipurpose discord bot equipped with utility tools. No setup is required to use the bot.\r\n"
+				+ "Utilcord is a multipurpose discord bot equipped with utility tools.\r\n"
 				+ "-------------------------------------------------------------------------------------");
 		expectedEmbedBuilder.addField("Prefix and help", 
 				  "1. ``e!``: Type this in front of a command.\r\n"
