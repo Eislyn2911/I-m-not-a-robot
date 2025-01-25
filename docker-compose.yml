@@ -6,8 +6,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    env_file:
-      - .env
+    environment:
+      - DISCORD_JDA_KEY = ${DISCORD_JDA_KEY}
+      - GOOGLE_SCRIPT_TRANSLATOR_DEPLOYMENT_ID = ${GOOGLE_SCRIPT_TRANSLATOR_DEPLOYMENT_ID}
+      - CURRENCY_TRANSLATOR_API_KEY = ${CURRENCY_TRANSLATOR_API_KEY}
     networks:
       - stack
 
