@@ -20,7 +20,7 @@ RUN mvn dependency:resolve
 COPY src src
 
 # Copy the .env to the working directory
-COPY .env .env
+COPY .env .
 
 # Build the project
 RUN mvn clean package
