@@ -31,7 +31,7 @@ public class CurrencyExchange {
 	 */
 	private String getApiKey() {
 		String deploymentKey = System.getenv(apiKeyName);
-		if (deploymentKey == null) {
+		if (deploymentKey == null || deploymentKey.isEmpty()) {
 			Dotenv dotenv = Dotenv.load();  // Load Dotenv only if needed
 			deploymentKey = dotenv.get(apiKeyName);
 		}

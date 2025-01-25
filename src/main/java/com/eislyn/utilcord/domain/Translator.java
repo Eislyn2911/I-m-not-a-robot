@@ -35,7 +35,7 @@ public class Translator {
 		}
 
 		String deploymentKey = System.getenv(deploymentKeyName);
-		if (deploymentKey == null) {
+		if (deploymentKey == null || deploymentKey.isEmpty()) {
 			Dotenv dotenv = Dotenv.load();  // Load Dotenv only if needed
 			deploymentKey = dotenv.get(deploymentKeyName);
 		}
